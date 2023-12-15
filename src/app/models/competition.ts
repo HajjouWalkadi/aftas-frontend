@@ -7,4 +7,5 @@ export interface Competition {
     numberOfParticipants: number;
     location: string;
     amount: number;
+    status?: string;
   }

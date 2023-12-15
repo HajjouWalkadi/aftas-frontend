@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ListFishComponent } from './components/fish/list-fish/list-fish.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { HeadComponent } from './components/head/head.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListCompetitionComponent } from './components/competition/list-competition/list-competition.component';
 import { CreateCompetitionComponent } from './components/competition/create-competition/create-competition.component';
@@ -20,6 +20,16 @@ import { ViewHuntingComponent } from './components/hunting/view-hunting/view-hun
 import { ListLevelComponent } from './components/level/list-level/list-level.component';
 import { CreateLevelComponent } from './components/level/create-level/create-level.component';
 import { UpdateLevelComponent } from './components/level/update-level/update-level.component';
+import { UpdateMemberComponent } from './components/member/update-member/update-member.component';
+import { CreateMemberComponent } from './components/member/create-member/create-member.component';
+import { ListMemberComponent } from './components/member/list-member/list-member.component';
+import { ViewMemberComponent } from './components/member/view-member/view-member.component';
+import { ViewCompetitionComponent } from './components/competition/view-competition/view-competition.component';
+import { ViewRankingComponent } from './components/ranking/view-ranking/view-ranking.component';
+import { CreateRankingComponent } from './components/ranking/create-ranking/create-ranking.component';
+import { DatePipe } from '@angular/common';
+import { ListRankingComponent } from './components/ranking/list-ranking/list-ranking.component';
+import { UpdateRankingComponent } from './components/ranking/update-ranking/update-ranking.component';
 
 @NgModule({
   declarations: [
@@ -38,15 +48,25 @@ import { UpdateLevelComponent } from './components/level/update-level/update-lev
     ViewHuntingComponent,
     ListLevelComponent,
     CreateLevelComponent,
-    UpdateLevelComponent
+    UpdateLevelComponent,
+    UpdateMemberComponent,
+    CreateMemberComponent,
+    ListMemberComponent,
+    ViewMemberComponent,
+    ViewCompetitionComponent,
+    ViewRankingComponent,
+    CreateRankingComponent,
+    ListRankingComponent,
+    UpdateRankingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule, 
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

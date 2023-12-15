@@ -4,9 +4,9 @@
 <div class=" mt-5  " >
   <div class="d-flex justify-content-between"> 
   
-    <h4 >  <img class="mx-3 " width="50" height="50" src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/50/00000/external-competition-business-and-teamwork-smashingstocks-mixed-smashing-stocks.png" 
+    <h4 >  <img class="mx-3 " width="50" height="50" src="./../.././../../assets/icons/icons8-trophy-64.png" 
       alt="external-competition-business-and-teamwork-smashingstocks-mixed-smashing-stocks"/>Competitions</h4>
-    <a routerLink="/competitions/create" class="btn shadow mb-3 rounded"style="background-color: #0c151e; color:#f9eeb9" > <b>+</b>  Add competition</a>
+    <a routerLink="/competitions/create" class="btn shadow mb-3 rounded"style="background-color: #0c151e; color:#00A584" > <b>+</b>  Add competition</a>
     </div>
 
    
@@ -36,7 +36,7 @@
     </tr>
   </thead>
   <tbody>
-    <!-- <tr *ngFor="let competition of filteredCompetitions">
+    <tr *ngFor="let competition of filteredCompetitions">
       <td>{{ competition.code }}</td>
       <td>{{ competition.date | date:'yyyy-MM-dd' }}</td>
       <td>{{ competition.startTime }}</td>
@@ -47,17 +47,40 @@
       <td>{{ competition.amount }}</td>
       <td>
        
-          <button class="btn btn-outline-warning btn-rounded btn-sm mx-1 shadow bg-warning bg-opacity-25"
-          (click)="viewCompetitionDetails(competition.id)">List M</button>
-        <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25"
-          (click)="deleteCompetition(competition.id)">Delete</button>
-          <button class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="calculateAndAssignScores(competition.id)">
+          <button class="btn btn-outline-black btn-rounded btn-sm mx-1 shadow bg-opacity-25" style="background-color: #45A8FF;"
+          (click)="viewCompetitionDetails(competition.id)">List Of Member</button>
+        <!-- <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25"
+          (click)="deleteCompetition(competition.id)">Delete</button> -->
+          <button class="btn btn-outline-black btn-rounded btn-sm mx-1 shadow bg-opacity-25" style="background-color: #00A584;" (click)="calculateAndAssignScores(competition.id)">
             Finish
           </button>
           <button  class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="redirectToGetRankingsByCompetition(competition.id)">
             Finish
           </button>
       </td>
-    </tr> -->
+    </tr>
   </tbody>
 </table>
+<!-- After the table in your competition.component.html -->
+<div class="d-flex justify-content-center align-items-center mt-4">
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" href="#" aria-label="Previous" (click)="currentPage = currentPage - 1">
+          <span aria-hidden="true">&laquo; Previous</span>
+        </a>
+      </li>
+
+      <li class="page-item disabled">
+        <span class="page-link">Page {{ currentPage }} of {{ totalPages }}</span>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" href="#" aria-label="Next" (click)="currentPage = currentPage + 1">
+          <span aria-hidden="true">Next &raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+   

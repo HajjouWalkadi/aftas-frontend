@@ -8,4 +8,6 @@ export interface Ranking {
   score: number;
   competition: Competition;
   member: Member;
+  competitionId?: number;
+  memberId?: number;
 }

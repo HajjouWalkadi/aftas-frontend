@@ -6,12 +6,7 @@
       <input type="number" class="form-control border-3"
              id="numberOfFish" name="numberOfFish"  [(ngModel)]="newHunting.numberOfFish" required>
     </div>
-    <div class="mb-3 px-3">
-      <label for="averageWeight" class="form-label">Average Weight</label>
-      <input type="number" class="form-control border-3"
-             id="averageWeight" name="averageWeight" [(ngModel)]="newHunting.averageWeight" required>
-    </div>
-  
+    
     <div class="mb-3 px-3">
       <label for="competitionId" class="form-label">Competition</label>
       <select class="form-select border-3"
@@ -35,7 +30,11 @@
         <option *ngFor="let fish of fishes" value="{{fish.id}}">{{ fish.name }} - {{ fish.averageWeight }} g</option>
       </select>
     </div>
-  
+    <div class="mb-3 px-3">
+      <label for="averageWeight" class="form-label">Weight</label>
+      <input type="number" class="form-control border-3"
+             id="averageWeight" name="averageWeight" [(ngModel)]="newHunting.averageWeight" required>
+    </div>
     <div class="d-flex justify-content-center">
       <button type="submit" class="btn shadow mb-5 rounded" style="background-color: #0c151e; color: #00A584;">Create Hunting</button>
     </div>

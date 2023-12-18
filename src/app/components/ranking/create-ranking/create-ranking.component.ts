@@ -57,20 +57,20 @@ export class CreateRankingComponent {
     );
   }
 
-  submitRanking(): void {
-    if (this.rankingForm.valid) {
-      const rankingData = this.rankingForm.value;
-      console.log(`View member with number ${rankingData}`);
-      this.rankingService.saveRanking(rankingData).subscribe(
-        (createdRanking) => {
-          console.log('Ranking created successfully:', createdRanking);
-        },
-        (error) => {
-          console.error('Error creating ranking:', error);
-        }
-      );
-    }
-  }
+  // submitRanking(): void {
+  //   if (this.rankingForm.valid) {
+  //     const rankingData = this.rankingForm.value;
+  //     console.log(`View member with number ${rankingData}`);
+  //     this.rankingService.saveRanking(rankingData).subscribe(
+  //       (createdRanking) => {
+  //         console.log('Ranking created successfully:', createdRanking);
+  //       },
+  //       (error) => {
+  //         console.error('Error creating ranking:', error);
+  //       }
+  //     );
+  //   }
+  // }
 
 
 }

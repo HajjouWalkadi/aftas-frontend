@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Competition } from 'src/app/models/competition';
 import { Ranking } from 'src/app/models/ranking';
+import { CompetitionService } from 'src/app/services/competition.service';
 import { RankingService } from 'src/app/services/ranking.service';
 
 @Component({
@@ -8,63 +10,33 @@ import { RankingService } from 'src/app/services/ranking.service';
   styleUrls: ['./list-ranking.component.css']
 })
 export class ListRankingComponent {
-  rankings: Ranking[] = [];
-  currentDateFilter: any = '';
+  rankings: any[] = [];
+  competitions:Competition[] = [];
+  selectedCompetitionId:number = 0;
 
-  constructor(private rankingService: RankingService) {}
+  constructor(private resultsService: RankingService,private competitionService:CompetitionService) {}
 
   ngOnInit(): void {
-    this.loadRankings();
+    this.loadCompetitions();
   }
 
-  loadRankings(): void {
-    this.rankingService.getAllRankings().subscribe(
-      (rankings) => {
-        this.rankings = rankings;
+  submitHunting(): void {
+    console.log(this.selectedCompetitionId);
+    this.resultsService.getResults(this.selectedCompetitionId).subscribe(
+      (respoonse: any) => {
+        this.rankings = respoonse.data;
       },
-      (error) => {
-        console.error('Error loading rankings:', error);
-      }
+      error => console.error(error)
     );
   }
-
-  filterRankingsByDate(): void {
-    if (this.currentDateFilter) {
-   
-        const parsedDate = new Date(this.currentDateFilter);
-        const isoDate = parsedDate.toISOString();
-      this.rankingService.getRankingsByDate(this.currentDateFilter).subscribe(
-        (rankings) => {
-          this.rankings = rankings;
+    loadCompetitions(): void {
+      this.competitionService.getAllCompetitions().subscribe(
+        competitions => {
+         
+  
+          this.competitions = competitions.data;
         },
-        (error) => {
-          console.error('Error loading rankings by date:', error);
-        }
+        error => console.log(error)
       );
-    } else {
-      // If the date filter is empty, reload all rankings
-      this.loadRankings();
     }
   }
-
-  getTopThreeRankedRankings(): Ranking[] {
-    // Sort rankings based on the score in descending order and get the top three
-    return this.rankings.slice().sort((a, b) => b.score - a.score).slice(0, 3);
-  }
-
-  getPodiumClass(index: number): string {
-    // Add your logic to determine the class based on the index
-    switch (index) {
-      case 0:
-        return 'first';
-      case 1:
-        return 'second';
-      case 2:
-        return 'third';
-      default:
-        return '';
-    }
-  }
-
-
-}

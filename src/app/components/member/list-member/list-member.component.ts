@@ -23,14 +23,21 @@ export class ListMemberComponent implements OnInit {
     this.loadMembers();
   }
 
-  loadMembers(): void {
-    this.memberService.getAllMembers().subscribe(
-      (members) => {
-        this.members = members.data;
-        this.filterMembers(); // Apply initial filtering
-      },
-      (error) => console.log(error)
-    );
+  // loadMembers(): void {
+  //   this.memberService.getAllMembers().subscribe(
+  //     (members) => {
+  //       this.members = members.data;
+  //       this.filterMembers(); // Apply initial filtering
+  //     },
+  //     (error) => console.log(error)
+  //   );
+  // }
+  loadMembers(){
+    this.memberService. getAllMembers().subscribe((data:any) => {
+      this.members = data.data;
+      console.log('Members data:', this.members); 
+    });
+
   }
 
   viewMember(num: number): void {

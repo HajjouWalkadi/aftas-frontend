@@ -8,6 +8,7 @@ import { Member } from 'src/app/models/member';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { FishService } from 'src/app/services/fish.service';
 import { HuntingService } from 'src/app/services/hunting.service';
+import { MemberService } from 'src/app/services/member.service';
 import { RankingService } from 'src/app/services/ranking.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -17,101 +18,86 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./create-hunting.component.css']
 })
 export class CreateHuntingComponent implements OnInit {
-  huntingForm: FormGroup;
-
-  competitions: Competition[] = [];
-  members: Member[] = [];
-  fishes: Fish[] = [];
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private huntingService: HuntingService,
-    private competitionService: CompetitionService,
-    private rankingService: RankingService,
-    private fishService: FishService,
-    private router: Router,
-    private toastService: ToastService
-  ) {
-    this.huntingForm = this.formBuilder.group({
-      memberNum: ['', Validators.required],
-      competitionId: ['', Validators.required],
-      numberOfFish: [1, Validators.required],
-      fishId: ['', Validators.required],
-    });
-  }
-
-  ngOnInit(): void {
-    //this.loadCompetitions();
-    this.loadFishes();
-  }
-
-  // loadCompetitions(): void {
-  //   const today = new Date();
-  //   this.competitionService.getAllCompetitions().subscribe(
-  //     (competitions) => {
-  //       this.competitions = competitions.filter(comp => {
-  //         const compDate = new Date(comp.date);
-  //         return compDate.getFullYear() === today.getFullYear() &&
-  //           compDate.getMonth() === today.getMonth() &&
-  //           compDate.getDate() === today.getDate();
-  //       });
-
-  //       if (this.competitions.length > 0) {
-  //         this.loadMembers(this.competitions[0].id);
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('Error loading competitions:', error);
-  //     }
-  //   );
-  // }
-
-  loadMembers(competitionId: number): void {
-    this.rankingService.getAllMembersByCompetition(competitionId).subscribe(
-      (members) => {
-        this.members = members;
-      },
-      (error) => {
-        console.error('Error loading members:', error);
-      }
-    );
-  }
-
-  loadFishes(): void {
-    this.fishService.getAllFish().subscribe(
-      (fishes) => {
-        this.fishes = fishes;
-      },
-      (error) => {
-        console.error('Error loading fishes:', error);
-      }
-    );
-  }
-
  
-  createHunting(): void {
-    if (this.huntingForm.valid) {
-      // Create an instance of the Hunting type
-      const newHuntingData: Hunting = {
-        id: 0, // You can set this to 0 or some default value
-        memberNum: this.huntingForm.value.memberNum,
-        competitionId: this.huntingForm.value.competitionId,
-        numberOfFish: this.huntingForm.value.numberOfFish,
-        fishId: this.huntingForm.value.fishId,
-      };
+  newHunting: Hunting = {
+      id: 0,
+      memberId:0,
+      competitionId:0,
+      fishId:0,
+      numberOfFish:0,
+      averageWeight:0
   
-      // Call the service to save the hunting entry
-      this.huntingService.saveHunting(newHuntingData).subscribe(
-        (createdHunting) => {
-          console.log('Hunting created successfully:', createdHunting);
-          this.router.navigate(['/hunting']);
-        },
-        (error) => {
-          console.error('Error creating hunting:', error);
-        }
-      );
+    };
+    members: any[] = [];
+    competitions: any[] = [];
+    fishes: any[] = [];
+  
+    selectedMember:number =0 ;
+    selectedCompetition:number =0 ;
+    selectedFish:number =0 ;
+  
+    successmsg:string='';
+  
+    constructor(
+     
+      private router: Router,
+      private memberService: MemberService,
+      private competitionService: CompetitionService,
+      private fishService:FishService,
+      private huntingService:HuntingService
+  
+     
+    ) { }
+    
+  
+    ngOnInit(): void {
+      this.getMembers();
+      this.getCompetitions();
+      this.getFishes();
+     
     }
-  }
-
+    private getMembers(){
+      this.memberService. getAllMembers().subscribe((data:any) => {
+        this.members = data.data;
+        console.log('Members data:', this.members); 
+      });
+  
+    }
+    private getCompetitions(){
+      this.competitionService. getAllCompetitions().subscribe((data:any) => {
+        this.competitions = data.data;
+        console.log('Competitions:', this.competitions);
+      });
+  
+    }
+    private getFishes(){
+      this.fishService. getAllFish().subscribe((data:any) => {
+        this.fishes = data.data;
+        console.log(data)
+      });
+  
+    }
+  
+    createHunting(): void {
+  
+      this.newHunting.memberId = this.selectedMember;
+      this.newHunting.competitionId = this.selectedCompetition;
+      this.newHunting.fishId = this.selectedFish;
+  
+        // console.log(`View member with number ${rankingData}`);
+        this.huntingService.saveHunting(this.newHunting).subscribe(
+          (createdHunting) => {
+            this.successmsg="Hunting created successfully";
+            console.log('Hunting  created successfully:', createdHunting);
+            
+          },
+          (error) => {
+            console.error('Error creating Hunting :', error);
+          }
+        );
+      
+    }
+  
+  
 
 }

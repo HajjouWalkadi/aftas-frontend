@@ -30,7 +30,7 @@ loadHunts(): void {
   this.huntingService.getAllHuntings().subscribe(
     hunts => {
       const observables = hunts.map(hunt => {
-        const memberObs = this.memberService.getMemberByNum(hunt.memberNum);
+        const memberObs = this.memberService.getMemberByNum(hunt.memberId);
         const competitionObs = this.competitionService.getCompetitionById(hunt.competitionId);
         const fishObs = this.fishService.getFishById(hunt.fishId);
 
@@ -54,7 +54,7 @@ loadHunts(): void {
   fetchMemberDetails(memberNum: number): void {
     this.memberService.getMemberByNum(memberNum).subscribe(
       member => {
-        const hunt = this.huntList.find(h => h.memberNum === memberNum);
+        const hunt = this.huntList.find(h => h.memberId === memberNum);
         if (hunt) {
           hunt.member = member;
         }
@@ -95,17 +95,17 @@ loadHunts(): void {
     console.log(`Edit hunting with id ${id}`);
   }
 
-  deleteHunt(id: number): void {
-    this.huntingService.deleteHunting(id).subscribe(
-      () => {
-        console.log(`Hunt with ID ${id} deleted successfully.`);
-        this.loadHunts();
-      },
-      (error) => {
-        console.error(`Error deleting hunt with ID ${id}:`, error);
-      }
-    );
-  }
+  // deleteHunt(id: number): void {
+  //   this.huntingService.deleteHunting(id).subscribe(
+  //     () => {
+  //       console.log(`Hunt with ID ${id} deleted successfully.`);
+  //       this.loadHunts();
+  //     },
+  //     (error) => {
+  //       console.error(`Error deleting hunt with ID ${id}:`, error);
+  //     }
+  //   );
+  // }
 
 
 }

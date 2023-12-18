@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RankingService {
-  private baseUrl = 'http://localhost:8080/aftas/rankings';
+  private baseUrl = 'http://localhost:8080/api/v1/ranking';
 
   constructor(private http: HttpClient) { }
 
@@ -24,14 +24,14 @@ export class RankingService {
     return this.http.get<Ranking[]>(this.baseUrl);
   }
 
-  updateRanking(id: number, updatedRanking: Ranking): Observable<Ranking> {
-    return this.http.put<Ranking>(`${this.baseUrl}/${id}`, updatedRanking);
-  }
+  // updateRanking(id: number, updatedRanking: Ranking): Observable<Ranking> {
+  //   return this.http.put<Ranking>(`${this.baseUrl}/${id}`, updatedRanking);
+  // }
 
 
-  deleteRanking(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
+  // deleteRanking(id: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  // }
   getRankingsByDate(date: Date): Observable<Ranking[]> {
     
     return this.http.get<Ranking[]>(`${this.baseUrl}/rankings`, { params: { date: date.toISOString() } });

@@ -6,16 +6,15 @@ import { Fish } from './fish';
 export interface Hunting {
   id: number;
   numberOfFish: number;
-  // Add the following properties based on your requirements
+  averageWeight: number;
   competitionId: number;
-  memberNum: number;
+  memberId: number;
   fishId: number;
-  
-  // Relationships
-  member?: Member;
-  competition?: Competition;
-  fish?: Fish;
-  // Add other relationships if needed
 
-  // ... other properties
+
+  // Relationships
+   member?: Member;
+  competition?: Competition;
+   fish?: Fish;
+
 }

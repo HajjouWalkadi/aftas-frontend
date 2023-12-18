@@ -21,11 +21,13 @@ import { CreateRankingComponent } from './components/ranking/create-ranking/crea
 import { ViewRankingComponent } from './components/ranking/view-ranking/view-ranking.component';
 import { ListRankingComponent } from './components/ranking/list-ranking/list-ranking.component';
 import { UpdateRankingComponent } from './components/ranking/update-ranking/update-ranking.component';
+import { ViewCompetitionComponent } from './components/competition/view-competition/view-competition.component';
 
 const routes: Routes = [
   { path: 'competitions', component: ListCompetitionComponent },
   { path: 'competitions/create', component: CreateCompetitionComponent },
   { path: 'competitions/update', component: UpdateCompetitionComponent },
+  { path: 'competitions/view/:code', component: ViewCompetitionComponent },
 
   { path: 'fish', component: ListFishComponent },
   { path: 'fish/create', component: CreateFishComponent },

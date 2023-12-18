@@ -12,8 +12,8 @@ export class MemberService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMembers(): Observable<Member[]> {
-    return this.http.get<Member[]>(this.baseUrl);
+  getAllMembers(): Observable<any> {
+    return this.http.get<any>(this.baseUrl);
   }
 
   getMemberByNum(num: number): Observable<Member> {
@@ -24,13 +24,13 @@ export class MemberService {
     return this.http.post<Member>(this.baseUrl, member);
   }
 
-  updateMember(num: number, updatedMember: Member): Observable<Member> {
-    return this.http.put<Member>(`${this.baseUrl}/${num}`, updatedMember);
-  }
+  // updateMember(num: number, updatedMember: Member): Observable<Member> {
+  //   return this.http.put<Member>(`${this.baseUrl}/${num}`, updatedMember);
+  // }
 
-  deleteMember(num: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${num}`);
-  }
+  // deleteMember(num: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.baseUrl}/${num}`);
+  // }
   getAllMembersByCompetition(competitionId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${competitionId}/members`);
   }

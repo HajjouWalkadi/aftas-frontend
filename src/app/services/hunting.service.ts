@@ -25,17 +25,17 @@ export class HuntingService {
     return this.http.get<Hunting[]>(this.baseUrl);
   }
 
-  updateHunting(updatedHunting: Hunting): Observable<Hunting> {
-    return this.http.put<Hunting>(`${this.baseUrl}/${updatedHunting.id}`, updatedHunting);
-  }
+  // updateHunting(updatedHunting: Hunting): Observable<Hunting> {
+  //   return this.http.put<Hunting>(`${this.baseUrl}/${updatedHunting.id}`, updatedHunting);
+  // }
 
-  deleteHunting(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
+  // deleteHunting(id: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  // }
   
   findExistingHunt(newHuntingData: Hunting): Observable<Hunting> {
     const searchParams = {
-      memberNum: newHuntingData.memberNum,
+      memberNum: newHuntingData.memberId,
       competitionId: newHuntingData.competitionId,
       fishId: newHuntingData.fishId
     };
@@ -46,4 +46,5 @@ export class HuntingService {
   calculateAndAssignScores(competitionId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/calculate-scores/${competitionId}`, {});
   }  
+  
 }

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Competition } from '../models/competition';
-import { Observable } from 'rxjs';
+import { Member } from '../models/member';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,16 @@ export class CompetitionService {
     return this.http.post<Competition>(this.baseUrl, competition);
   }
 
-  getCompetitionById(id: number): Observable<Competition> {
-    return this.http.get<Competition>(`${this.baseUrl}/${id}`);
+  getCompetitionById(code: number): Observable<Competition> {
+    return this.http.get<any>(`${this.baseUrl}/${code}`).pipe(
+      map(res => res.data)
+    );
+  }
+
+  getAllMembersByCompetition(code: number): Observable<Member[]> {
+    return this.http.get<any>(`${this.baseUrl}/${code}/members`).pipe(
+      map(res => res.data)
+    );
   }
   getAllCompetitions(): Observable<any> {
     return this.http.get<Competition[]>(this.baseUrl);
@@ -37,6 +46,13 @@ export class CompetitionService {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
+  }
+
+  registerMember(competitionCode: any, memberId: number ) {
+    return this.http.post(this.baseUrl+'/signin-member', {
+      competitionId: competitionCode,
+      memberId: memberId 
+    })
   }
 
 }

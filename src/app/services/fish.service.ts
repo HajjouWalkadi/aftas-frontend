@@ -19,16 +19,16 @@ export class FishService {
     return this.http.get<Fish>(`${this.baseUrl}/${id}`);
   }
 
-  getAllFish(): Observable<Fish[]> {
-    return this.http.get<Fish[]>(this.baseUrl);
+  getAllFish(): Observable<any> {
+    return this.http.get<any>(this.baseUrl);
   }
 
-  updateFish(id: number, updatedFish: Fish): Observable<Fish> {
-    return this.http.put<Fish>(`${this.baseUrl}/${id}`, updatedFish);
-  }
+  // updateFish(id: number, updatedFish: Fish): Observable<Fish> {
+  //   return this.http.put<Fish>(`${this.baseUrl}/${id}`, updatedFish);
+  // }
 
-  deleteFish(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
+  // deleteFish(id: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  // }
 
 }

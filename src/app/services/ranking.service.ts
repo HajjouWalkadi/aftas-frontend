@@ -8,46 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class RankingService {
   private baseUrl = 'http://localhost:8080/api/v1/ranking';
+  private baseApi = 'http://localhost:8080/api/v1/ranking/competitions';
 
-  constructor(private http: HttpClient) { }
+ 
 
+  constructor(private http: HttpClient) {}
 
-  saveRanking(ranking: Ranking): Observable<Ranking> {
-    return this.http.post<Ranking>(this.baseUrl, ranking);
+  getResults(competitionId:number): Observable<Ranking[]> {
+    return this.http.get<Ranking[]>(`${this.baseApi}/${competitionId}/podium`);
   }
-
-  getRankingById(id: number): Observable<Ranking> {
-    return this.http.get<Ranking>(`${this.baseUrl}/${id}`);
-  }
-
-  getAllRankings(): Observable<Ranking[]> {
-    return this.http.get<Ranking[]>(this.baseUrl);
-  }
-
-  // updateRanking(id: number, updatedRanking: Ranking): Observable<Ranking> {
-  //   return this.http.put<Ranking>(`${this.baseUrl}/${id}`, updatedRanking);
-  // }
-
-
-  // deleteRanking(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  // }
-  getRankingsByDate(date: Date): Observable<Ranking[]> {
-    
-    return this.http.get<Ranking[]>(`${this.baseUrl}/rankings`, { params: { date: date.toISOString() } });
-  }
-  
-  getAllMembersByCompetition(competitionId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${competitionId}/members`);
-  }
-  getPodiumForCompetitionOnDate(competitionId: number, date: string): Observable<Ranking[]> {
-    const url = `${this.baseUrl}/competition/${competitionId}/date/${date}`;
-    return this.http.get<Ranking[]>(url);
-  }
-
-  getRankingsByCompetition(competitionId: number): Observable<any[]> {
-    const url = `${this.baseUrl}/competition/${competitionId}`;
-    return this.http.get<any[]>(url);
-  }
-
 }

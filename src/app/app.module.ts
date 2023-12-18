@@ -30,6 +30,7 @@ import { CreateRankingComponent } from './components/ranking/create-ranking/crea
 import { DatePipe } from '@angular/common';
 import { ListRankingComponent } from './components/ranking/list-ranking/list-ranking.component';
 import { UpdateRankingComponent } from './components/ranking/update-ranking/update-ranking.component';
+// import { RegisterMemberComponent } from './components/competition/register-member/register-member.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UpdateRankingComponent } from './components/ranking/update-ranking/upda
     ViewRankingComponent,
     CreateRankingComponent,
     ListRankingComponent,
-    UpdateRankingComponent
+    UpdateRankingComponent,
+    // RegisterMemberComponent
   ],
   imports: [
     BrowserModule,

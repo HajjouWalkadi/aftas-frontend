@@ -16,18 +16,20 @@ import { ViewMemberComponent } from './components/member/view-member/view-member
 import { ListHuntingComponent } from './components/hunting/list-hunting/list-hunting.component';
 import { CreateHuntingComponent } from './components/hunting/create-hunting/create-hunting.component';
 import { UpdateHuntingComponent } from './components/hunting/update-hunting/update-hunting.component';
-import { ViewHuntingComponent } from './components/hunting/view-hunting/view-hunting.component';
+// import { ViewHuntingComponent } from './components/hunting/view-hunting/view-hunting.component';
 import { CreateRankingComponent } from './components/ranking/create-ranking/create-ranking.component';
 import { ViewRankingComponent } from './components/ranking/view-ranking/view-ranking.component';
 import { ListRankingComponent } from './components/ranking/list-ranking/list-ranking.component';
 import { UpdateRankingComponent } from './components/ranking/update-ranking/update-ranking.component';
 import { ViewCompetitionComponent } from './components/competition/view-competition/view-competition.component';
+import { CompetitionStepsComponent } from './components/competition/competition-steps/competition-steps.component';
 
 const routes: Routes = [
   { path: 'competitions', component: ListCompetitionComponent },
   { path: 'competitions/create', component: CreateCompetitionComponent },
   { path: 'competitions/update', component: UpdateCompetitionComponent },
   { path: 'competitions/view/:code', component: ViewCompetitionComponent },
+  { path: 'competition-status', component:CompetitionStepsComponent},
 
   { path: 'fish', component: ListFishComponent },
   { path: 'fish/create', component: CreateFishComponent },
@@ -46,13 +48,13 @@ const routes: Routes = [
   { path: 'hunting', component: ListHuntingComponent },
   { path: 'hunting/create', component: CreateHuntingComponent },
   { path: 'hunting/update/:id', component: UpdateHuntingComponent },
-  { path: 'hunting/view/:id', component: ViewHuntingComponent },
+  // { path: 'hunting/view/:id', component: ViewHuntingComponent },
   { path: 'fishes', component: ListFishComponent },
 
   { path: 'rankings', component: ListRankingComponent },
   { path: 'rankings/create', component: CreateRankingComponent },
   { path: 'rankings/update/:id', component: UpdateRankingComponent },
-  { path: 'rankings/view/:id', component: ViewRankingComponent },
+  // { path: 'rankings/view/:id', component: ViewRankingComponent },
   
 
 ];

@@ -7,6 +7,8 @@
     <h4 >  <img class="mx-3 " width="50" height="50" src="./../.././../../assets/icons/icons8-trophy-64.png" 
       alt="external-competition-business-and-teamwork-smashingstocks-mixed-smashing-stocks"/>Competitions</h4>
     <a routerLink="/competitions/create" class="btn shadow mb-3 rounded"style="background-color: #0c151e; color:#00A584" > <b>+</b>  Add competition</a>
+    <!-- <a routerLink="/members/create" class="btn shadow mb-3 rounded"style="background-color: #0c151e; color:#00A584" > <b>+</b> Register Member</a> -->
+
     </div>
 
    
@@ -48,15 +50,16 @@
       <td>
        
           <button class="btn btn-outline-black btn-rounded btn-sm mx-1 shadow bg-opacity-25" style="background-color: #45A8FF;"
-          (click)="viewCompetitionDetails(competition.id)">List Of Member</button>
+            [routerLink]="['view', competition.code]"
+          >View</button>
         <!-- <button class="btn btn-outline-danger btn-rounded btn-sm mx-1 shadow bg-danger bg-opacity-25"
           (click)="deleteCompetition(competition.id)">Delete</button> -->
-          <button class="btn btn-outline-black btn-rounded btn-sm mx-1 shadow bg-opacity-25" style="background-color: #00A584;" (click)="calculateAndAssignScores(competition.id)">
+          <!-- <button class="btn btn-outline-black btn-rounded btn-sm mx-1 shadow bg-opacity-25" style="background-color: #00A584;" (click)="calculateAndAssignScores(competition.id)">
             Finish
-          </button>
-          <button  class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="redirectToGetRankingsByCompetition(competition.id)">
+          </button> -->
+          <!-- <button  class="btn btn-outline-info btn-rounded btn-sm mx-1 shadow bg-info bg-opacity-25" (click)="redirectToGetRankingsByCompetition(competition.id)">
             Finish
-          </button>
+          </button> -->
       </td>
     </tr>
   </tbody>

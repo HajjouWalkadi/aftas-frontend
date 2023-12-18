@@ -1,0 +1,26 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Past Competitions</h5>
+      <ng-container *ngFor="let competition of pastCompetitions">
+        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{ competition.code }} - Date:{{ formatDate(competition.date) | date: 'dd/MM/yyyy' }}-Location:  {{ competition.location }}</p>
+    </ng-container>
+    </div>
+  </div>
+  
+  <div class="card text-center" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Ongoing Competitions</h5>
+      <ng-container *ngFor="let competition of ongoingCompetitions">
+        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{ competition.code}} - Date: {{ competition.date | date: 'shortDate' }}</p>
+    </ng-container>
+    </div>
+  </div>
+  
+  <div class="card text-right" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Future Competitions</h5>
+      <ng-container *ngFor="let competition of futureCompetitions">
+        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{ competition.code }} - Date: {{ competition.date | date: 'shortDate' }}</p>
+    </ng-container>
+    </div>
+  </div>

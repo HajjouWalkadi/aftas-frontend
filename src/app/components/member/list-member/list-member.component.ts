@@ -26,7 +26,7 @@ export class ListMemberComponent implements OnInit {
   loadMembers(): void {
     this.memberService.getAllMembers().subscribe(
       (members) => {
-        this.members = members;
+        this.members = members.data;
         this.filterMembers(); // Apply initial filtering
       },
       (error) => console.log(error)
@@ -41,18 +41,18 @@ export class ListMemberComponent implements OnInit {
     console.log(`Edit member with number ${num}`);
   }
 
-  deleteMember(num: number): void {
-    this.memberService.deleteMember(num).subscribe(
-      () => {
-        console.log(`Member with number ${num} deleted successfully.`);
-        this.showSuccessToast();
-        this.loadMembers();
-      },
-      (error) => {
-        console.error(`Error deleting member with number ${num}:`, error);
-      }
-    );
-  }
+  // deleteMember(num: number): void {
+  //   this.memberService.deleteMember(num).subscribe(
+  //     () => {
+  //       console.log(`Member with number ${num} deleted successfully.`);
+  //       this.showSuccessToast();
+  //       this.loadMembers();
+  //     },
+  //     (error) => {
+  //       console.error(`Error deleting member with number ${num}:`, error);
+  //     }
+  //   );
+  // }
 
   filterMembers(): void {
     const lowerCaseSearchTerm = this.searchTerm.toLowerCase();

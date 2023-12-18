@@ -16,7 +16,7 @@ export class CreateMemberComponent {
     familyName: '',
     accessionDate: new Date(),
     nationality: '',
-    IdentityDocumentType: IdentityDocumentType.CIN, 
+    identityDocumentType: IdentityDocumentType.CIN, 
     identityNumber: ''
   };
 
